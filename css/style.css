@@ -1,0 +1,19 @@
+#app {
+    margin: 0px;
+    display: table;
+    width: 100%;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.left-pane {
+    display: table-cell;
+    width: 50%;
+}
+
+.right-pane {
+    display: table-cell;
+    width: 50%;
+}

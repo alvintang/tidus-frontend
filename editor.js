@@ -1,26 +1,33 @@
-var editorTextArea = document.getElementById("editor");
+Vue.component('editor', {
+    data: function() {
+        return {
+           result: "test",
+           myCodeMirror: null
+        }
+    },
+    template: '<div><textarea id="editor"></textarea>\
+    <form v-on:submit.prevent>\
+    <button @click="submit">Run Code</button>\
+    </form>\
+    <p>\
+        <h3>Output</h3>\
+        <pre>{{ result }}</pre>\
+    </p></div>',
+    mounted() {
+        var editorTextArea = document.getElementById("editor");
 
-var myCodeMirror = CodeMirror.fromTextArea(editorTextArea, {
-    mode:  "python",
-    lineNumbers: true
-});
-
-myCodeMirror.setValue("print(\"hello!\")\n");
-
-new Vue({
-    el:"#app",
-    data:{
-        result: "test",
+        this.myCodeMirror = CodeMirror.fromTextArea(editorTextArea, {
+            mode:  "python",
+            lineNumbers: true
+        });
+        
+        this.myCodeMirror.setValue("print(\"hello!\")\n");
     },
     methods: {
         submit: function(){
             const vm = this;
-            const cmValue = myCodeMirror.getValue()
-            // console.log(cmValue)
-            // axios.get("http://localhost:8000").then( function(response){
-            //     vm.result = response.data;
-            //     console.log(response.data);
-            // })
+            const cmValue = vm.myCodeMirror.getValue()
+            console.log(cmValue)
             axios({
                 method: 'post',
                 url: 'http://localhost:8000/run',

@@ -5,20 +5,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/python/python.min.js" integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/marked@0.3.6"></script>
+        <link rel="stylesheet" href="css/style.css"/>
     </head>
     <body>
-        <textarea id="editor"></textarea>
-
         <div id="app">
-            <form v-on:submit.prevent>
-            <button @click="submit">Run Code</button>
-            </form>
-            <p>
-                <h3>Output</h3>
-                <pre>{{ result }}</pre>
-            </p>
+            <div class="table-row">
+                <info class="left-pane"></info>
+                <editor class="right-pane"></editor>
+            </div>
         </div>
 
+        <script src="info.js"></script>
         <script src="editor.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>
