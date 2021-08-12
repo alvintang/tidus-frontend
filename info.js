@@ -10,7 +10,10 @@ Vue.component('info', {
     computed: {
         compiledMarkdown: function() {
             const vm = this;
-            axios.get("http://localhost:8000/info").then( function(response){
+            var textId = this.$route.params.id;
+            var url = "http://localhost:8000/data/info/"+textId+"/";
+            // console.log(url);
+            axios.get(url).then( function(response){
                 vm.text = response.data['message'];
             })
           return marked(vm.text, { sanitize: true });

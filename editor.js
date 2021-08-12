@@ -20,8 +20,11 @@ Vue.component('editor', {
             mode:  "python",
             lineNumbers: true
         });
-        
-        this.myCodeMirror.setValue("print(\"hello!\")\n");
+        this.updateValue()
+        // this.myCodeMirror.setValue("print(\"hello!\")\n");        
+    },
+    update() {
+        this.updateValue()
     },
     methods: {
         submit: function(){
@@ -41,6 +44,16 @@ Vue.component('editor', {
                 console.log(response.data);
                 vm.result = response.data['message'];
             });
+        },
+        updateValue: function() {
+            const vm = this;
+            var textId = this.$route.params.id;
+            var url = "http://localhost:8000/data/code/"+textId+"/";
+            // console.log(url);
+            axios.get(url).then( function(response){
+              var text = response.data['message'];
+                vm.myCodeMirror.setValue(text);
+            })
         }
    }
 })
